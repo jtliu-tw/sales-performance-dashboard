@@ -43,7 +43,7 @@ ORDER BY num_cases DESC;
 
 <img src="https://github.com/user-attachments/assets/0396e621-1fe4-45dd-9c2b-f1dbcfdd56c0" width="400" alt="Image">
 
-The overall win rate is 51.8%, and the loss rate is 41.5%, indicating a moderate conversion performance. The average sales cycle duration is approximately 40–50 days. Notably, opportunities in the “Engaging” stage experience a significantly prolonged duration, averaging 198.8 days, suggesting a potential bottleneck in the sales process.
+The overall win rate is 48.16%, and the loss rate is 28.10%, indicating a moderate conversion performance. The average sales cycle duration is approximately 40–50 days. Notably, opportunities in the “Engaging” stage experience a significantly prolonged duration, averaging 198.8 days, suggesting a potential bottleneck in the sales process.
 
 ***
 
@@ -56,7 +56,7 @@ SELECT
     ROUND(SUM(CASE WHEN sp.deal_stage = 'Won' THEN 1 ELSE 0 END) * 100.0 / COUNT(sp.opportunity_id), 1) AS win_rate,
     SUM(sp.close_value) AS total_value
 FROM sales_pipeline AS sp
-JOIN accounts a USING (account)
+JOIN accounts AS a USING (account)
 WHERE sp.deal_stage IN ('Won', 'Lost')
 GROUP BY location
 ORDER BY total_value DESC, win_rate DESC;
